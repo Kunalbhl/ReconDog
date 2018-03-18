@@ -18,7 +18,7 @@ except:
 
 def fetch(url, decoding='utf-8'):
     "Fetches content of URL"
-    return urlopen(url).read().decode(decoding)
+    return urlopen(url).read().decode(decoding))
 
 def banner():
     print("\033[93m                               ___       ___\033[1;m")
