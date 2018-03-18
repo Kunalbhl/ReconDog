@@ -1,4 +1,4 @@
-  #!/usr/bin/env python
+#!/usr/bin/env python
 import sys
 
 VER = 2
@@ -102,4 +102,54 @@ def dog():
                 print('\033[1;3{color}mHoneypot Probabilty: {probability}%\033[1;m'.format(color='2' if float(phoney) < 0.5 else '3', probability=float(phoney) * 10))
  
 
-        elif cho
+        elif choice == '7':
+            domain = input('\033[1;91mEnter Domain: \033[1;m')
+
+            if not (domain.startswith('http://') or domain.startswith('https://')):
+                domain = 'http://' + domain
+            robot = domain + "/robots.txt"
+            
+            try:
+                probot = fetch(robot)
+                print(probot)
+            except URLError:
+                print('\033[1;31m[-] Can\'t access to {page}!\033[1;m'.format(page=robot))        
+
+        elif choice == '8':
+            page = input('\033[1;91mEnter URL: \033[1;m')
+
+            if not (page.startswith('http://') or page.startswith('https://')):
+                page = 'http://' + page
+            crawl = "https://api.hackertarget.com/pagelinks/?q=" + page
+            pcrawl = fetch(crawl)
+            print (pcrawl)
+
+        elif choice == '9':
+            ip = input('\033[1;91mEnter IP Address: \033[1;m')
+            geo = "http://ipinfo.io/" + ip + "/geo"
+            
+            try:
+                pgeo = fetch(geo)
+                print(pgeo)
+            except URLError:
+                print('\033[1;31m[-] Please provide a valid IP address!\033[1;m')
+
+        elif choice == '10':
+            domip = input('\033[1;91mEnter Domain or IP Address: \033[1;m')
+            trace = "https://api.hackertarget.com/mtr/?q=" + domip
+            ptrace = fetch(trace)
+            print (ptrace)
+
+        elif choice == '11':
+            print('\033[97m11. Exiting\033[1;m')
+
+        else:
+            print('\033[1;31m[-] Invalid option!\033[1;m')
+        #except:
+        #    print('\033[1;31m[-] Something wrong happened!\033[1;m')
+
+
+#=====# Main #=====#
+
+if __name__ == '__main__':
+    dog()
